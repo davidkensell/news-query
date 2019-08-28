@@ -1,0 +1,15 @@
+vagrant@vagrant:/vagrant$ python3 newsquery.py
+
+1. What are the three most popular articles of all time?
+'Candidate is jerk, alleges rival' with 338647 hits
+'Bears love berries, alleges bear' with 253801 hits
+'Bad things gone, say good people' with 170098 hits
+
+2. Who are the most popular authors of all time?
+Ursula La Multa - 507594 views
+Rudolf von Treppenwitz - 423457 views
+Anonymous Contributor - 170098 views
+Markoff Chaney - 84557 views
+
+3. Days with HTTP error rates over 1% are:
+2016-July-17 had error rate: 2.26
