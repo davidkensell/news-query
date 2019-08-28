@@ -6,17 +6,17 @@ def main():
 
     def pop_art():
         cur.execute("""
-        select articles.slug, count(log.id) as hits
+        select articles.title, count(log.id) as hits
             from log join articles
             on articles.slug = SUBSTRING(log.path, 10)
-            group by slug
+            group by title
             order by hits desc
             limit 3;
             """)
-        colnames = [desc[0] for desc in cur.description]
         res = cur.fetchall()
-        print("The 3 most popular articles are:\n{}".format(colnames))
-        print(*res, sep='\n')
+        print("\n1. What are the three most popular articles of all time?")
+        for r in res:
+            print("'{}' with {} hits".format(*r))
         return res
 
     def pop_author():
@@ -31,10 +31,10 @@ def main():
         group by authors.name
         order by hits desc;
         """)
-        colnames = [desc[0] for desc in cur.description]
         res = cur.fetchall()
-        print("\nThe most popular authors are: \n{}".format(colnames))
-        print(*res, sep='\n')
+        print('\n2. Who are the most popular authors of all time?')
+        for r in res:
+            print('{} - {} views'.format(*r))
         return res
 
     def err_rate():
@@ -53,11 +53,9 @@ def main():
         group by day,err,ttl
         order by rate desc;
         """)
-        colnames = [desc[0] for desc in cur.description]
         res = cur.fetchall()
-        unzres = list(zip(*res))
-        print("\nDays with HTTP error rates over 1% are:")
-        print((unzres[0][0]).strftime("%Y-%B-%d") + ", " + str(res[0][3]))
+        print("\n3. Days with HTTP error rates over 1% are:")
+        print((res[0][0]).strftime("%Y-%B-%d") + " had error rate: " + str(res[0][3]))
         return res
 
     try:
