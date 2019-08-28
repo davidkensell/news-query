@@ -55,7 +55,9 @@ def main():
         """)
         res = cur.fetchall()
         print("\n3. Days with HTTP error rates over 1% are:")
-        print((res[0][0]).strftime("%Y-%B-%d") + " had error rate: " + str(res[0][3]))
+        print((res[0][0]).strftime("%Y-%B-%d") +
+              " had error rate: " +
+              str(res[0][3]))
         return res
 
     try:
